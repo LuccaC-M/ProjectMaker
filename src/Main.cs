@@ -12,8 +12,12 @@ namespace Principal {
                 case 1:
                     Console.Write("Input file name (without suffix): ");
                     string fileName = Console.ReadLine();
-                    CLang.CreateFiles(fileName);
-                    Console.WriteLine("C File has been created!");
+                    bool success = CLang.CreateFiles(fileName);
+                    if (success) {
+                        Console.WriteLine("C File has been created!");
+                    } else {
+                        Console.WriteLine("C File(s) couldn't be created");
+                    }
                     break;
                 case 2:
                     Console.WriteLine("C++ File has been created!");
