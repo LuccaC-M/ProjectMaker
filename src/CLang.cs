@@ -18,7 +18,7 @@ namespace C {
         static bool CreateHeaderFile(string fileName, string filePath) {
             filePath += fileName + ".h";
             fileName = fileName.ToUpper();
-            // Create & Write to file     #include "the_name_of_the_file.h"
+            // Create & Write to file     #ifndef FILENAME_H          #define  FILENAME_H         #endif //FILENAME_H 
             File.WriteAllText(filePath, $"#ifndef {fileName + "_H"} \n#define {fileName + "_H"} \n#endif //{fileName + "_H"}");
             return File.Exists(filePath);
         }
