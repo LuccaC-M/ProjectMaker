@@ -28,9 +28,11 @@ namespace Cfiles {
 
 namespace CPPfiles {
     class CPP {
-        public static bool CreateFiles(string fileName, short suffix) {
-            string filePath = Directory.GetCurrentDirectory() + '/';
-            return CreateSourceFile(fileName, filePath, suffix) && CreateHeaderFile(fileName, filePath, suffix);
+        public static void CreateFiles(string[] fileNames, string filePath, short suffix) {
+            foreach (string fileName in fileNames) {
+                CreateSourceFile(fileName, filePath, suffix);
+                CreateHeaderFile(fileName, filePath, suffix);
+            }
         }
 
         static bool CreateSourceFile(string fileName, string filePath, short suffix) {
