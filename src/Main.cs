@@ -1,6 +1,7 @@
 using System;
 using Cfiles;
 using CPPfiles;
+using FileUtilities;
 
 class Program {
     static void Main(string[] args) {
@@ -22,18 +23,11 @@ class Program {
                 }
                 break;
             case 2:
-                Console.Write("Input file name (without suffix): ");
-                fileName = Console.ReadLine();
+                string [] fileNames = FileUtils.ObtainFileNamesArray();
                 Console.WriteLine("Choose suffix:");
                 Console.Write("1. .cpp \n2. .cc \n3. .cxx \n> ");
                 short suffix = short.Parse(Console.ReadLine());
-                success = CPP.CreateFiles(fileName, suffix);
-
-                if (success) {
-                    Console.WriteLine("C++ Files have been created!");
-                } else {
-                    Console.WriteLine("C++ File(s) couldn't be created");
-                }
+                CPP.CreateFiles(fileNames, System.IO.Directory.GetCurrentDirectory() + '/', suffix);
                 break;
         }
     }
