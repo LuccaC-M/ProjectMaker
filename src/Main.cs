@@ -13,17 +13,11 @@ class Program {
         bool success;
         switch(choice) {
             case 1:
-                Console.Write("Input file name (without suffix): ");
-                fileName = Console.ReadLine();
-                success = CLang.CreateFiles(fileName);
-                if (success) {
-                    Console.WriteLine("C Files have been created!");
-                } else {
-                    Console.WriteLine("C File(s) couldn't be created");
-                }
+                string[] fileNames = FileUtils.ObtainFileNamesArray();
+                CPP.CreateFiles(fileNames, System.IO.Directory.GetCurrentDirectory() + '/')
                 break;
             case 2:
-                string [] fileNames = FileUtils.ObtainFileNamesArray();
+                string[] fileNames = FileUtils.ObtainFileNamesArray();
                 Console.WriteLine("Choose suffix:");
                 Console.Write("1. .cpp \n2. .cc \n3. .cxx \n> ");
                 short suffix = short.Parse(Console.ReadLine());

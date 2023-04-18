@@ -3,9 +3,12 @@ using System.IO;
 
 namespace Cfiles {
     class CLang {
-        public static bool CreateFiles(string fileName) {
-            string filePath = Directory.GetCurrentDirectory() + '/';
-            return CreateSourceFile(fileName, filePath) && CreateHeaderFile(fileName, filePath);
+
+        public static void CreateFiles(string[] fileNames, string filePath) {
+            foreach (string fileName in fileNames) {
+                CreateSourceFile(fileName, filePath);
+                CreateHeaderFile(fileName, filePath);
+            }
         }
 
         static bool CreateSourceFile(string fileName, string filePath) {
