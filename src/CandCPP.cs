@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Cfiles {
+namespace CandCPP {
     class CLang {
 
         public static void CreateFiles(string[] fileNames, string filePath) {
@@ -30,9 +30,7 @@ namespace Cfiles {
             File.WriteAllText(filePath, "int main(int argc, char *argv[]) {\n}");
         }
     }
-}
 
-namespace CPPfiles {
     class CPP {
         public static void CreateFiles(string[] fileNames, string filePath, short suffix) {
             CreateMainFile(filePath, suffix);
