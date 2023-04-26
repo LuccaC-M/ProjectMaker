@@ -1,6 +1,6 @@
 using System;
 
-namespace FileUtilities {
+namespace SystemDirectoryUtils {
     class FileUtils {
         public static string[] ObtainFileNamesArray() {
             return AskFileNames().Replace(" ", string.Empty).Split(',');
