@@ -9,15 +9,15 @@ class Program {
         int choice = Int32.Parse(Console.ReadLine());
         Console.Write("Input project name: ");
         string projectName = Console.ReadLine();
-        string fileName;
-        bool success;
+        string[] fileNames;
         switch(choice) {
             case 1:
-                string[] fileNames = FileUtils.ObtainFileNamesArray();
-                CPP.CreateFiles(fileNames, System.IO.Directory.GetCurrentDirectory() + '/')
+                fileNames = FileUtils.ObtainFileNamesArray();
+                System.IO.Directory.CreateDirectory(System.IO.Directory.GetCurrentDirectory() + '/' + projectName);
+                CLang.CreateFiles(fileNames, System.IO.Directory.GetCurrentDirectory() + $"/{projectName}");
                 break;
             case 2:
-                string[] fileNames = FileUtils.ObtainFileNamesArray();
+                fileNames = FileUtils.ObtainFileNamesArray();
                 Console.WriteLine("Choose suffix:");
                 Console.Write("1. .cpp \n2. .cc \n3. .cxx \n> ");
                 short suffix = short.Parse(Console.ReadLine());

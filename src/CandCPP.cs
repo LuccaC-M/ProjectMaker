@@ -20,7 +20,7 @@ namespace CandCPP {
 
         static void CreateHeaderFile(string fileName, string filePath) {
             filePath += fileName + ".h";
-            headerGuard = fileName.ToUpper() + "_H";
+            string headerGuard = fileName.ToUpper() + "_H";
             // Create the file & add include guards
             File.WriteAllText(filePath, $"#ifndef {headerGuard} \n#define {headerGuard} \n#endif //{headerGuard}");
         }
@@ -43,13 +43,13 @@ namespace CandCPP {
         static void CreateSourceFile(string fileName, string filePath, short suffix) {
             filePath += fileName + (suffix == 1 ? ".cpp" : suffix == 2 ? ".cc" : ".cxx");
             // Create the file & add the header file
-            File.WriteAllText(filePath, $"#include "{fileName + ".h"}"");
+            File.WriteAllText(filePath, $"#include \"{fileName + ".h"}\"");
         }
 
         static void CreateHeaderFile(string fileName, string filePath, short suffix) {
             string headerSuffix = (suffix == 1 ? "hpp" : suffix == 2 ? "hh" : "hxx");
             filePath += fileName + "." + headerSuffix;
-            headerGuard = fileName.ToUpper() + "_" + headerSuffix.ToUpper();
+            string headerGuard = fileName.ToUpper() + "_" + headerSuffix.ToUpper();
             // Create the file & add include guards
             File.WriteAllText(filePath, $"#ifndef {headerGuard} \n#define {headerGuard} \n#endif //{headerGuard}");
         }
