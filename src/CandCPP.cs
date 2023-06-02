@@ -5,11 +5,11 @@ namespace CandCPP {
     class CLang {
 
         public static void CreateFiles(string[] fileNames, string filePath) {
-            CreateMainFile(filePath);
             foreach (string fileName in fileNames) {
                 CreateSourceFile(fileName, filePath);
                 CreateHeaderFile(fileName, filePath);
             }
+            CreateMainFile(filePath);
         }
 
         static void CreateSourceFile(string fileName, string filePath) {
