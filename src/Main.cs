@@ -21,18 +21,18 @@ class Program {
         
         switch(choice) {
             case 1:
-                System.IO.Directory.CreateDirectory(currentDirectory + projectName);
+                FileUtils.CreateProjectDirectory(currentDirectory, projectName);
                 CLang.CreateFiles(fileNames, currentDirectory + $"/{projectName}/");
                 break;
             case 2:
                 Console.WriteLine("Choose suffix:");
                 Console.Write("1. .cpp \n2. .cc \n3. .cxx \n> ");
                 short suffix = short.Parse(Console.ReadLine());
-                System.IO.Directory.CreateDirectory(currentDirectory + projectName);
+                FileUtils.CreateProjectDirectory(currentDirectory, projectName);
                 CPP.CreateFiles(fileNames, System.IO.Directory.GetCurrentDirectory() + $"/{projectName}/", suffix);
                 break;
             case 3:
-                System.IO.Directory.CreateDirectory(currentDirectory + projectName);
+                FileUtils.CreateProjectDirectory(currentDirectory, projectName);
                 break;
         }
     }
