@@ -9,7 +9,7 @@ class Program {
 
         /**Getting the type of projects**/
         Console.WriteLine("Choose Project Type:");
-        Console.Write("1. C \n2. C++ \nInput a Number: ");
+        Console.Write("1. C \n2. C++ \n3.Web JS (no framework)\nInput a Number: ");
         int choice = Int32.Parse(Console.ReadLine()); // recording the input
 
         /**Obtaining Project name**/
@@ -30,6 +30,9 @@ class Program {
                 short suffix = short.Parse(Console.ReadLine());
                 System.IO.Directory.CreateDirectory(currentDirectory + projectName);
                 CPP.CreateFiles(fileNames, System.IO.Directory.GetCurrentDirectory() + $"/{projectName}/", suffix);
+                break;
+            case 3:
+                System.IO.Directory.CreateDirectory(currentDirectory + projectName);
                 break;
         }
     }
