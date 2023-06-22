@@ -1,5 +1,6 @@
 using System;
 using CandCPP;
+using WebJavascript;
 
 class Program {
     static void Main(string[] args) {
@@ -26,7 +27,7 @@ class Program {
                 CLang.StartProject(fileNames, currentDirectory, projectName, 2);
                 break;
             case 3:
-                FileUtils.CreateProjectDirectory(currentDirectory, projectName);
+                JSNoFramework.StartProject(fileNames, currentDirectory, projectName);
                 break;
         }
     }
