@@ -1,19 +1,26 @@
 using System;
 using System.IO;
+using Project;
 
 namespace CandCPP {
-    class CLang {
+    class CLang : Project {
 
-        public static void CreateFiles(string[] fileNames, string filePath) {
-            foreach (string fileName in fileNames) {
-                CreateSourceFile(fileName, filePath);
-                CreateHeaderFile(fileName, filePath);
-            }
-            CreateMainFile(filePath);
+        public override static StartProject(string[] fileNames, string currentDirectory, string projectName, short type) {
+            System.IO.Directory.CreateDirectory(currentDirectory + $"/{projectName}/");
+            System.IO.Directory.CreateDirectory(currentDirectory + $"/{projectName}/" + "src");
+            this.CreateFiles(filenames, currentDirectory + $"/{projectName}/", type);
         }
 
-        static void CreateSourceFile(string fileName, string filePath) {
-            filePath += fileName + ".c";
+        public override static void CreateFiles(string[] fileNames, string filePath, short type) {
+            foreach (string fileName in fileNames) {
+                CreateSourceFile(fileName, filePath + "src/", type);
+                CreateHeaderFile(fileName, filePath + "src/");
+            }
+            CreateMainFile(filePath, type);
+        }
+
+        static void CreateSourceFile(string fileName, string filePath, short type) {
+            filePath += fileName + (type == 1 ? ".c" + ".cc");
             // Create & Write to file     #include "the_name_of_the_file.h"
             File.WriteAllText(filePath, $"#include \"{fileName + ".h"}\"");
         }
@@ -25,40 +32,9 @@ namespace CandCPP {
             File.WriteAllText(filePath, $"#ifndef {headerGuard} \n#define {headerGuard} \n#endif //{headerGuard}");
         }
 
-        static void CreateMainFile(string filePath) {
-            filePath += "main.c";
+        static void CreateMainFile(string filePath, short type) {
+            filePath += type == 1 ? "main.c" : "main.cc";
             File.WriteAllText(filePath, "int main(int argc, char *argv[]) {\n}");
         }
-    }
-
-    class CPP {
-        public static void CreateFiles(string[] fileNames, string filePath, short suffix) {
-            CreateMainFile(filePath, suffix);
-            foreach (string fileName in fileNames) {
-                CreateSourceFile(fileName, filePath, suffix);
-                CreateHeaderFile(fileName, filePath, suffix);
-            }
-        }
-
-        static void CreateSourceFile(string fileName, string filePath, short suffix) {
-            filePath += fileName + (suffix == 1 ? ".cpp" : suffix == 2 ? ".cc" : ".cxx");
-            // Create the file & add the header file
-            File.WriteAllText(filePath, $"#include \"{fileName + ".h"}\"");
-        }
-
-        static void CreateHeaderFile(string fileName, string filePath, short suffix) {
-            string headerSuffix = (suffix == 1 ? "hpp" : suffix == 2 ? "hh" : "hxx");
-            filePath += fileName + "." + headerSuffix;
-            string headerGuard = fileName.ToUpper() + "_" + headerSuffix.ToUpper();
-            // Create the file & add include guards
-            File.WriteAllText(filePath, $"#ifndef {headerGuard} \n#define {headerGuard} \n#endif //{headerGuard}");
-        }
-
-        static void CreateMainFile(string filePath, short suffix) {
-            filePath += "main" + (suffix == 1 ? ".cpp" : suffix == 2 ? ".cc" : ".cxx");
-            // Create & write main function template
-            File.WriteAllText(filePath, "int main(int argc, char **argv) {\n}");
-        }
-
     }
 }
