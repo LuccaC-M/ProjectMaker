@@ -32,6 +32,7 @@ class Program {
         }
     }
 
+    // Asks for the file names then procceds to return an array with them.
     static string AskFileNames() {
         Console.Write("Input file name(s) separated by comas: ");
         return Console.ReadLine().Replace(" ", string.Empty).Split(',');
